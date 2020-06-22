@@ -21,3 +21,18 @@ class Raw_Ticks(models.Model):
     def __str__(self):
         return str(self.datetime)+' '+self.instrument+' '+str(self.price)
 
+    def get_first(self):
+        return self.objects.first()
+
+    def get_first10(self):
+        list = []
+        counter = 0
+        for i in self.Raw_Ticks.objects.all():
+            counter+=1
+            if counter>10:
+                break
+            else:
+                list.append(i)
+
+        return list
+
